@@ -1,0 +1,12 @@
+# Block direct web access to config and cache files — only the PHP scripts
+# in this folder should read them via require()/file_get_contents().
+<FilesMatch "^(config\.php|.*\.json|.*\.txt)$">
+    Require all denied
+</FilesMatch>
+
+<IfModule !mod_authz_core.c>
+    <FilesMatch "^(config\.php|.*\.json|.*\.txt)$">
+        Order allow,deny
+        Deny from all
+    </FilesMatch>
+</IfModule>
