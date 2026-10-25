@@ -245,6 +245,9 @@ function downloadDriveFileById(string $fileId, int $maxBytes): array
         CURLOPT_MAXREDIRS => 5,
         CURLOPT_TIMEOUT => 25,
         CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; WoodstockPhotoUpload/1.0)',
+        // The API key is IP-restricted to this server's IPv4 address, but curl
+        // defaults to IPv6 when both are available — force IPv4 to match.
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
         CURLOPT_NOPROGRESS => false,
         CURLOPT_PROGRESSFUNCTION => function ($res, $expectedDown, $downloaded) use ($maxBytes, &$tooBig) {
             if ($downloaded > $maxBytes) {
@@ -307,7 +310,12 @@ function listDriveFolderImages(string $folderId, string $apiKey, int $limit): ar
     ]);
 
     $ch = curl_init($url);
-    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20]);
+    curl_setopt_array($ch, [
+        CURLOPT_RETURNTRANSFER => true,
+        CURLOPT_TIMEOUT => 20,
+        // Match the API key's IPv4 restriction — see note above.
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
+    ]);
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
     curl_close($ch);

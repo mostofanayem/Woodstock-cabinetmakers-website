@@ -56,6 +56,9 @@ function placesApiRequest(string $url, string $apiKey, string $fieldMask, ?array
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTPHEADER => $headers,
         CURLOPT_TIMEOUT => 8,
+        // If the API key ends up IP-restricted, match its IPv4 address —
+        // curl defaults to IPv6 when the server has both. See admin/index.php.
+        CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4,
     ]);
     if ($jsonBody !== null) {
         curl_setopt($ch, CURLOPT_POST, true);
