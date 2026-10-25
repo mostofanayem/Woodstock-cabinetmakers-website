@@ -33,4 +33,9 @@ return [
     // Set this up as a real mailbox or alias in hPanel once the site is live.
     'CONTACT_FROM_EMAIL' => 'noreply@woodstockcabinetmakers.com.au',
     'CONTACT_FROM_NAME' => 'Woodstock Cabinet Makers Website',
+
+    // Password for /admin (the photo-upload tool). Generate a hash locally with:
+    //   php -r "echo password_hash('your-password-here', PASSWORD_DEFAULT), PHP_EOL;"
+    // and paste the result below. Never put the plain-text password here.
+    'ADMIN_PASSWORD_HASH' => '',
 ];

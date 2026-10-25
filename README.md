@@ -1,6 +1,6 @@
 # Woodstock Cabinet Makers — Website
 
-Static site (HTML/CSS/JS + PHP) for **woodstockcabinetmakers.com.au**, built to run on Hostinger shared hosting with no build step and no Node server.
+Static site (HTML/CSS/JS + PHP) for **woodstockcabinetmakers.com.au**, built to run on Hostinger shared hosting with no build step and no Node server. **Live** at woodstockcabinetmakers.com.au as of 25 Oct 2026, on the Hostinger Premium plan hosting account.
 
 Read `_context/website-status.md` first — it has current build status, what's still pending, and the hard rules for this project (don't invent business facts, nothing goes live without Jack's sign-off, etc.).
 
@@ -16,8 +16,23 @@ assets/img/                Logo (real, extracted from brand assets) + placeholde
 api/contact-form.php       Contact + quick-chat form handler (PHP mail())
 api/google-reviews-proxy.php   Server-side Google Places API (New) proxy, with caching
 api/config.sample.php      Copy to api/config.php on the server and fill in real values
+admin/index.php            Password-protected photo-upload tool (not linked publicly)
+assets/img/photos/         Real project photos go here — filenames are fixed, see below
 _context/                  Brand voice, brand context, ideal customer profile, build status
 ```
+
+## Adding real photos
+
+Every photo on the site lives at a fixed filename under `assets/img/photos/` (e.g.
+`hero.jpg`, `lisas-kitchen-main.jpg`, `maries-fireplace-wide.jpg`) — the HTML already
+points at these paths, so replacing the file is the whole job, no code changes needed.
+
+The easiest way: open `/admin` on the live site, log in, and upload straight from a
+phone or computer — each slot is labeled (which project, which shot) and the tool
+automatically re-orients, resizes (max 2400px edge) and compresses the photo to the
+right filename. `/admin` is not linked from the public site and is excluded in
+`robots.txt`, but it is only as secure as its password (`ADMIN_PASSWORD_HASH` in
+`api/config.php`) — treat that page link and password like any other login.
 
 ## Local preview
 
@@ -47,9 +62,9 @@ proxy will fail gracefully and the page falls back to the real curated quotes al
    SPF/DKIM setup in hPanel, so this needs a real test, not just "the form submitted").
 5. Test the Google Reviews section loads live data (or confirm the curated fallback still
    looks right if the API key isn't set up yet).
-6. Swap every placeholder image (`assets/img/placeholder-photo.svg`) for real project
-   photography once supplied — filenames/alt text are already written per photo, see
-   `_context/website-status.md` for how that handoff is expected to work.
+6. Swap every placeholder photo under `assets/img/photos/` for the real thing — see
+   "Adding real photos" above. Do this via `/admin` rather than FTP where possible, since
+   it also resizes/compresses correctly.
 7. Screenshot desktop + mobile and get Jack's sign-off before pointing the QR code /
    announcing the site live.
 

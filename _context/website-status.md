@@ -1,5 +1,7 @@
 # Website Build Status — Woodstock Cabinet Makers
 
+**Live since 25 Oct 2026** at woodstockcabinetmakers.com.au, deployed to the Hostinger Premium plan hosting account (same account as aashirvadwellness.com.au, not touched). Deployed via the Hostinger API connector — files pushed directly, domain parked onto the website, DNS/SSL handled automatically by Hostinger. Real photos are added via `/admin` (see README) rather than redeploying code.
+
 Read this first if you're picking this repo up fresh. Also read `brand-voice.md`, `brand-context.md` and `ideal-customer-profile.md` in this folder before writing or changing any copy.
 
 ## What this repo is
@@ -26,8 +28,8 @@ A static HTML/CSS/JS + PHP website for **woodstockcabinetmakers.com.au**, built 
 
 ## Still needed before launch
 
-1. **Real photography and video.** Every image on the site is currently a placeholder SVG (clearly labeled "Photo coming soon", correct aspect ratios, real `alt` text already written per photo). The actual project photos and videos live in Mostofa's Google Drive ("Woodstock Cabinet Maker" folder → `Photos Output` / `Video Output`), but raw files are 6–8MB per photo and up to ~800MB per video — too large to pull through this chat session efficiently. **Next step: Mostofa selects and uploads a resized/web-ready set directly** (either attached in chat as a zip, similar to the brand asset zip, or uploaded straight to Hostinger during deployment using the exact filenames referenced in each page's `<img>` tag).
-2. **Videos**: given the file sizes above (Lisa's documentary alone is ~800MB), self-hosting on Hostinger shared hosting is not practical — recommend an unlisted YouTube or Vimeo embed instead. Not yet wired into any page. Needs a decision from Mostofa/Jack.
+1. **Real photography.** Every photo is a placeholder JPG under `assets/img/photos/` (fixed filenames, correct aspect ratios, real `alt` text already written). Upload real photos via `/admin` on the live site (password-protected tool, see README "Adding real photos") — no code changes or redeploy needed, just log in and upload into the labeled slot.
+2. **Video**: decided — unlisted YouTube embed (Mostofa's call, 24 Oct). Not yet wired into any page; needs the actual YouTube upload + embed added to Lisa's project page once the video is up.
 3. **Google Places API key**: `api/config.sample.php` has the full setup instructions. Someone needs to create a Google Cloud project, enable "Places API (New)", generate a restricted API key, and create `api/config.php` (gitignored) on the live server with that key. Until then, the reviews section falls back to the curated real quotes already in `index.html` (Lynda Kennedy, Kerry Waters, Leigh, Steve — all verified real review text from the brand asset carousel).
 4. **Footer/legal details**: deliberately left out per the brief's hard rule against inventing business specifics — Woodstock's own ABN, QBCC licence number, and opening hours are not published anywhere, and the second phone number from the invoices (0413 174 951) is not published. Ask Jack via Mostofa before adding any of these.
 5. **Mail deliverability**: `CONTACT_FROM_EMAIL` in `api/config.php` should be a real mailbox/alias on the woodstockcabinetmakers.com.au domain (set up in hPanel) — using a from-address PHP `mail()` can't authenticate will hurt deliverability/spam scoring.
