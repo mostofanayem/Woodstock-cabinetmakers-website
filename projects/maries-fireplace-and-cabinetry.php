@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe | Woodstock Cabinet Makers</title>
-<meta name="description" content="An entertainment wall unit, kitchen and wardrobe across a Toowong home — a Woodstock Cabinet Makers project.">
-<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/debbies-entertainment-kitchen-wardrobe.html">
+<title>Marie's Fireplace &amp; Cabinetry | Woodstock Cabinet Makers</title>
+<meta name="description" content="A fireplace surround and surrounding cabinetry for a Toowong home — a Woodstock Cabinet Makers project.">
+<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/maries-fireplace-and-cabinetry.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,40 +56,43 @@
 
 <main id="main">
   <div class="page-header wrap">
-    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe</p>
-    <p class="eyebrow">Whole Home — Toowong</p>
-    <h1>Three rooms, one considered fit-out.</h1>
+    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Marie's Fireplace &amp; Cabinetry</p>
+    <p class="eyebrow">Fireplace &amp; Cabinetry — Toowong</p>
+    <h1>A room built around the fireplace.</h1>
   </div>
 
   <div class="section section--tight">
     <div class="wrap">
       <dl class="project-meta">
-        <div><dt>Scope</dt><dd>Entertainment wall, kitchen &amp; wardrobe</dd></div>
-        <div><dt>Client</dt><dd>Debbie</dd></div>
+        <div><dt>Scope</dt><dd>Fireplace surround &amp; cabinetry</dd></div>
+        <div><dt>Client</dt><dd>Marie</dd></div>
         <div><dt>Location</dt><dd>Toowong, Brisbane</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/debbies-project-main.jpg" alt="Debbie's entertainment wall unit, Toowong — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace surround and cabinetry, Toowong — photography pending" width="1600" height="1000"></div>
         <div>
-          <p class="lede">An entertainment wall unit, kitchen and wardrobe across a Toowong home — three rooms built as part of the same considered fit-out.</p>
-          <p style="margin-top:1.5rem;">Spanning the living room, kitchen and bedroom, this project meant keeping the same quality of joinery and finish consistent across very different spaces.</p>
+          <p class="lede">A fireplace surround and the cabinetry around it, built to anchor the room it sits in — considered down to how the joinery meets the hearth.</p>
+          <p style="margin-top:1.5rem;">Like every Woodstock project, the brief started with a conversation about how the room is actually used, not just how it should look in a photo.</p>
         </div>
       </div>
-      <div class="project-gallery">
-        <div class="img-frame"><img src="../assets/img/photos/debbies-project-wide.jpg" alt="Debbie's entertainment wall unit, wide view — photography pending" width="1600" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/debbies-kitchen-detail.jpg" alt="Debbie's kitchen, detail — photography pending" width="1200" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/debbies-wardrobe-detail.jpg" alt="Debbie's wardrobe, detail — photography pending" width="1200" height="900"></div>
-      </div>
+      <?php
+      require __DIR__ . '/_gallery.php';
+      render_project_gallery('maries-fireplace', [
+          ['src' => '../assets/img/photos/maries-fireplace-wide.jpg', 'alt' => "Marie's fireplace and cabinetry, wide view — photography pending"],
+          ['src' => '../assets/img/photos/maries-fireplace-detail-1.jpg', 'alt' => "Marie's fireplace and cabinetry, detail — photography pending"],
+          ['src' => '../assets/img/photos/maries-fireplace-detail-2.jpg', 'alt' => "Marie's fireplace and cabinetry, joinery detail — photography pending"],
+      ]);
+      ?>
     </div>
   </div>
 
   <section class="section cta-band">
     <div class="wrap">
-      <h2>Planning more than one room?</h2>
+      <h2>Have a living space in mind?</h2>
       <p class="lede">Tell us about your space and how your family uses it — Jack will take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>
-        <a class="btn btn--ghost" href="../services/bedroom-and-wardrobes.html">Bedroom &amp; Wardrobes</a>
+        <a class="btn btn--ghost" href="../services/kitchen-and-living-room.html">Kitchen &amp; Living Room</a>
       </div>
     </div>
   </section>

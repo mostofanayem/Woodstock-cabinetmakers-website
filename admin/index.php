@@ -22,34 +22,37 @@ if (!file_exists($configPath)) {
 $config = require $configPath;
 $passwordHash = $config['ADMIN_PASSWORD_HASH'] ?? '';
 
-/* ---- Slot registry: key => [destination filename, label, group] ---- */
+/* ---- Slot registry: key => [destination filename, label, group] ----
+   Just the one "cover" photo per project (used on cards/thumbnails across
+   the site) plus the homepage hero. The rest of each project's photos are
+   bulk-imported from a Drive folder — see $GALLERIES below. */
 $SLOTS = [
     'hero' => ['hero.jpg', 'Homepage hero photo', 'Homepage'],
 
-    'lisas-kitchen-main' => ['lisas-kitchen-main.jpg', 'Main photo', "Lisa's Kitchen"],
-    'lisas-kitchen-wide' => ['lisas-kitchen-wide.jpg', 'Gallery — wide shot', "Lisa's Kitchen"],
-    'lisas-kitchen-detail-1' => ['lisas-kitchen-detail-1.jpg', 'Gallery — detail 1', "Lisa's Kitchen"],
-    'lisas-kitchen-detail-2' => ['lisas-kitchen-detail-2.jpg', 'Gallery — detail 2 (joinery)', "Lisa's Kitchen"],
+    'lisas-kitchen-main' => ['lisas-kitchen-main.jpg', 'Cover photo (used on cards)', "Lisa's Kitchen"],
+    'maries-fireplace-main' => ['maries-fireplace-main.jpg', 'Cover photo (used on cards)', "Marie's Fireplace & Cabinetry"],
+    'debbies-project-main' => ['debbies-project-main.jpg', 'Cover photo (used on cards)', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
+    'jennifers-reno-main' => ['jennifers-reno-main.jpg', 'Cover photo (used on cards)', "Jennifer's Queenslander Renovation"],
+];
 
-    'maries-fireplace-main' => ['maries-fireplace-main.jpg', 'Main photo', "Marie's Fireplace & Cabinetry"],
-    'maries-fireplace-wide' => ['maries-fireplace-wide.jpg', 'Gallery — wide shot', "Marie's Fireplace & Cabinetry"],
-    'maries-fireplace-detail-1' => ['maries-fireplace-detail-1.jpg', 'Gallery — detail 1', "Marie's Fireplace & Cabinetry"],
-    'maries-fireplace-detail-2' => ['maries-fireplace-detail-2.jpg', 'Gallery — detail 2 (joinery)', "Marie's Fireplace & Cabinetry"],
-
-    'debbies-project-main' => ['debbies-project-main.jpg', 'Main photo', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
-    'debbies-project-wide' => ['debbies-project-wide.jpg', 'Gallery — wide shot', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
-    'debbies-kitchen-detail' => ['debbies-kitchen-detail.jpg', 'Gallery — kitchen detail', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
-    'debbies-wardrobe-detail' => ['debbies-wardrobe-detail.jpg', 'Gallery — wardrobe detail', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
-
-    'jennifers-reno-main' => ['jennifers-reno-main.jpg', 'Main photo', "Jennifer's Queenslander Renovation"],
-    'jennifers-reno-wide' => ['jennifers-reno-wide.jpg', 'Gallery — wide shot', "Jennifer's Queenslander Renovation"],
-    'jennifers-wardrobe' => ['jennifers-wardrobe.jpg', 'Gallery — walk-in wardrobe', "Jennifer's Queenslander Renovation"],
-    'jennifers-laundry' => ['jennifers-laundry.jpg', 'Gallery — laundry', "Jennifer's Queenslander Renovation"],
+/* ---- Project galleries: slug => label. Bulk-imported from a Drive folder
+   into assets/img/photos/gallery/{slug}/, rendered by projects/_gallery.php ---- */
+$GALLERIES = [
+    'lisas-kitchen' => "Lisa's Kitchen",
+    'maries-fireplace' => "Marie's Fireplace & Cabinetry",
+    'debbies-project' => "Debbie's Entertainment Wall, Kitchen & Wardrobe",
+    'jennifers-reno' => "Jennifer's Queenslander Renovation",
 ];
 
 $PHOTOS_DIR = __DIR__ . '/../assets/img/photos';
+$GALLERY_DIR_BASE = $PHOTOS_DIR . '/gallery';
 $MAX_BYTES = 25 * 1024 * 1024; // 25MB per upload, well above a typical phone photo
 $MAX_EDGE = 2400; // longest side, matches the brief's web-size guidance
+$MAX_GALLERY_PHOTOS = 40; // cap per folder import so one request stays within PHP's time limit
+
+if (function_exists('set_time_limit')) {
+    @set_time_limit(180); // folder imports download + resize several photos in one request
+}
 
 /* ---- Tiny login-attempt throttle ---- */
 function tooManyAttempts(): bool
@@ -145,8 +148,26 @@ if ($isAuthed && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_s
                 'message' => $ok ? "Updated from $sourceDesc." : 'Could not process this image on the server.',
             ];
         }
+        foreach ($GALLERIES as $slug => $label) {
+            $folderUrl = trim($_POST['gallery_folder_' . $slug] ?? '');
+            if ($folderUrl === '') {
+                continue;
+            }
+            $apiKey = $config['GOOGLE_API_KEY'] ?? '';
+            if ($apiKey === '') {
+                $results[] = ['ok' => false, 'label' => "$label — gallery", 'message' => 'GOOGLE_API_KEY is not set in api/config.php yet.'];
+                continue;
+            }
+            $import = importDriveFolder($folderUrl, $slug, $GALLERY_DIR_BASE, $apiKey, $MAX_BYTES, $MAX_EDGE, $MAX_GALLERY_PHOTOS);
+            $results[] = [
+                'ok' => $import['ok'],
+                'label' => "$label — gallery",
+                'message' => $import['message'],
+            ];
+        }
+
         if (!$results) {
-            $results[] = ['ok' => false, 'label' => 'Form', 'message' => 'No files or links were given.'];
+            $results[] = ['ok' => false, 'label' => 'Form', 'message' => 'No files, links or folders were given.'];
         }
     }
 }
@@ -194,6 +215,17 @@ function fetchFromDriveLink(string $url, int $maxBytes): array
         return ['tmp_path' => null, 'error' => "Couldn't find a file ID in that link — paste the normal 'Share' link from Drive."];
     }
 
+    return downloadDriveFileById($fileId, $maxBytes);
+}
+
+/**
+ * Downloads a single Drive file (by ID) from Google's image-serving host
+ * into a temp file. Shared by the single-link path and the folder importer.
+ *
+ * @return array{tmp_path: ?string, error: ?string}
+ */
+function downloadDriveFileById(string $fileId, int $maxBytes): array
+{
     // Google's image-serving host — gives the original resolution, works for
     // anything shared "Anyone with the link", and skips the virus-scan
     // interstitial that drive.google.com/uc shows for larger files.
@@ -238,6 +270,131 @@ function fetchFromDriveLink(string $url, int $maxBytes): array
     }
 
     return ['tmp_path' => $tmpPath, 'error' => null];
+}
+
+/**
+ * Pulls a Google Drive folder ID out of a share link, e.g.
+ *   https://drive.google.com/drive/folders/FOLDER_ID?usp=sharing
+ */
+function extractDriveFolderId(string $url): ?string
+{
+    if (preg_match('#/folders/([a-zA-Z0-9_-]{10,})#', $url, $m)) {
+        return $m[1];
+    }
+    if (preg_match('#[?&]id=([a-zA-Z0-9_-]{10,})#', $url, $m)) {
+        return $m[1];
+    }
+    return null;
+}
+
+/**
+ * Lists image files directly inside a (publicly link-shared) Drive folder
+ * via the Drive API, sorted by name. Requires GOOGLE_API_KEY in config.php
+ * with the Drive API enabled — an API key alone can read a folder's
+ * contents when that folder is shared "Anyone with the link".
+ *
+ * @return array{ids: array<array{id: string, name: string}>, error: ?string}
+ */
+function listDriveFolderImages(string $folderId, string $apiKey, int $limit): array
+{
+    $query = sprintf("'%s' in parents and mimeType contains 'image/' and trashed = false", $folderId);
+    $url = 'https://www.googleapis.com/drive/v3/files?' . http_build_query([
+        'q' => $query,
+        'key' => $apiKey,
+        'fields' => 'files(id,name)',
+        'orderBy' => 'name',
+        'pageSize' => min($limit, 100),
+    ]);
+
+    $ch = curl_init($url);
+    curl_setopt_array($ch, [CURLOPT_RETURNTRANSFER => true, CURLOPT_TIMEOUT => 20]);
+    $response = curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    curl_close($ch);
+
+    if ($httpCode !== 200) {
+        $body = json_decode($response ?: '', true);
+        $apiMessage = $body['error']['message'] ?? "HTTP $httpCode";
+        return ['ids' => [], 'error' => "Drive API error: $apiMessage"];
+    }
+    $data = json_decode($response, true);
+    $files = $data['files'] ?? [];
+    if (!$files) {
+        return ['ids' => [], 'error' => "No images found — check the folder is shared \"Anyone with the link\" and actually contains photos."];
+    }
+    return ['ids' => array_slice($files, 0, $limit), 'error' => null];
+}
+
+/**
+ * Imports every image in a Drive folder into assets/img/photos/gallery/{slug}/
+ * as 01.jpg, 02.jpg, ... (sorted by filename in Drive, so renaming files in
+ * Drive — e.g. "1 kitchen wide.jpg" — controls which photos are featured).
+ * Replaces whatever was previously imported for this project.
+ *
+ * @return array{ok: bool, message: string}
+ */
+function importDriveFolder(string $folderUrl, string $slug, string $galleryDirBase, string $apiKey, int $maxBytes, int $maxEdge, int $limit): array
+{
+    $host = parse_url($folderUrl, PHP_URL_HOST);
+    $allowedHosts = ['drive.google.com', 'docs.google.com'];
+    $hostOk = $host && array_filter($allowedHosts, fn($h) => $host === $h || str_ends_with($host, '.' . $h));
+    if (!$host || !$hostOk) {
+        return ['ok' => false, 'message' => 'That link needs to be a drive.google.com folder URL.'];
+    }
+
+    $folderId = extractDriveFolderId($folderUrl);
+    if (!$folderId) {
+        return ['ok' => false, 'message' => "Couldn't find a folder ID in that link — paste the normal 'Share' link for the folder."];
+    }
+
+    $listing = listDriveFolderImages($folderId, $apiKey, $limit);
+    if ($listing['error']) {
+        return ['ok' => false, 'message' => $listing['error']];
+    }
+
+    $destDir = $galleryDirBase . '/' . $slug;
+    if (!is_dir($destDir)) {
+        @mkdir($destDir, 0755, true);
+    }
+    // Clear out a previous import so re-running with a smaller folder doesn't leave stale extras.
+    foreach (glob($destDir . '/*.jpg') ?: [] as $old) {
+        @unlink($old);
+    }
+
+    $imported = 0;
+    $failed = 0;
+    $n = 1;
+    foreach ($listing['ids'] as $file) {
+        $fetch = downloadDriveFileById($file['id'], $maxBytes);
+        if ($fetch['error']) {
+            $failed++;
+            continue;
+        }
+        $info = @getimagesize($fetch['tmp_path']);
+        if (!$info || !in_array($info['mime'], ['image/jpeg', 'image/png', 'image/webp'], true)) {
+            @unlink($fetch['tmp_path']);
+            $failed++;
+            continue;
+        }
+        $destination = $destDir . '/' . sprintf('%02d', $n) . '.jpg';
+        $ok = processAndSaveImage($fetch['tmp_path'], $info['mime'], $destination, $maxEdge);
+        @unlink($fetch['tmp_path']);
+        if ($ok) {
+            $imported++;
+            $n++;
+        } else {
+            $failed++;
+        }
+    }
+
+    if ($imported === 0) {
+        return ['ok' => false, 'message' => "Couldn't import any photos ($failed failed). Check the folder is shared \"Anyone with the link\"."];
+    }
+    $message = "Imported $imported photo" . ($imported === 1 ? '' : 's') . '.';
+    if ($failed) {
+        $message .= " ($failed couldn't be processed.)";
+    }
+    return ['ok' => true, 'message' => $message];
 }
 
 /**
@@ -407,9 +564,26 @@ $photosUrl = '../assets/img/photos/';
         </div>
       <?php endforeach; ?>
       </div>
+
+      <div class="group">
+        <h2>Project Galleries — bulk import from a Drive folder</h2>
+        <p class="sub" style="margin-bottom:1.25rem;">Paste a link to a whole Drive folder and every photo in it becomes this project's gallery (replacing whatever was imported before). The folder must be shared <strong>"Anyone with the link."</strong> The order of files in Drive controls the order on the site — the first two show larger. Up to <?= $MAX_GALLERY_PHOTOS ?> photos per folder.</p>
+        <?php foreach ($GALLERIES as $slug => $label):
+            $existingDir = $GALLERY_DIR_BASE . '/' . $slug;
+            $existingCount = is_dir($existingDir) ? count(glob($existingDir . '/*.jpg') ?: []) : 0;
+        ?>
+          <div class="slot">
+            <div class="field">
+              <label for="gallery_folder_<?= htmlspecialchars($slug) ?>"><?= htmlspecialchars($label) ?> <small class="hint">(<?= $existingCount ?> photo<?= $existingCount === 1 ? '' : 's' ?> currently imported)</small></label>
+              <input type="url" id="gallery_folder_<?= htmlspecialchars($slug) ?>" name="gallery_folder_<?= htmlspecialchars($slug) ?>" placeholder="https://drive.google.com/drive/folders/...">
+            </div>
+          </div>
+        <?php endforeach; ?>
+      </div>
+
       <div class="save-bar">
         <button type="submit" name="upload_submit" value="1">Save Photos</button>
-        <small class="hint" style="margin-left:1rem;">JPEG, PNG or WebP, up to 25MB — upload a file or paste a Drive link, not both.</small>
+        <small class="hint" style="margin-left:1rem;">JPEG, PNG or WebP, up to 25MB per photo — upload a file, paste a single Drive link, or paste a Drive folder link.</small>
       </div>
     </form>
   </div>

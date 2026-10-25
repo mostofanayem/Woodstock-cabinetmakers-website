@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Jennifer's Queenslander Renovation | Woodstock Cabinet Makers</title>
-<meta name="description" content="A full renovation of a character Queenslander — new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout. A Woodstock Cabinet Makers project.">
-<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/jennifers-queenslander-renovation.html">
+<title>Lisa's Kitchen | Woodstock Cabinet Makers</title>
+<meta name="description" content="In 2000, Jack Vorgias built Lisa a kitchen. It lasted so well, she never considered anyone else for the next one — a Woodstock Cabinet Makers project story.">
+<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/lisas-kitchen.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,40 +56,43 @@
 
 <main id="main">
   <div class="page-header wrap">
-    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Jennifer's Queenslander Renovation</p>
-    <p class="eyebrow">Full Renovation</p>
-    <h1>A character Queenslander, renewed room by room.</h1>
+    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Lisa's Kitchen</p>
+    <p class="eyebrow">Kitchen</p>
+    <h1>She called Jack again 26 years later.</h1>
   </div>
 
   <div class="section section--tight">
     <div class="wrap">
       <dl class="project-meta">
-        <div><dt>Scope</dt><dd>Kitchen, laundry, walk-in &amp; built-in wardrobes</dd></div>
-        <div><dt>Client</dt><dd>Jennifer</dd></div>
-        <div><dt>Property</dt><dd>Character Queenslander</dd></div>
+        <div><dt>Scope</dt><dd>Kitchen</dd></div>
+        <div><dt>Client</dt><dd>Lisa</dd></div>
+        <div><dt>Builder</dt><dd>Jack Vorgias</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander kitchen renovation — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/lisas-kitchen-main.jpg" alt="Lisa's kitchen, built by Woodstock Cabinet Makers — photography pending" width="1600" height="1000"></div>
         <div>
-          <p class="lede">A full renovation of an old Queenslander — a new kitchen, laundry, walk-in wardrobe, linen cupboards and kids' built-in wardrobes, all built around a home with real character.</p>
+          <p class="lede">In 2000, Jack Vorgias built Lisa a kitchen. It lasted so well, she never considered anyone else for the next one.</p>
           <blockquote class="quote">
-            <p>"You want someone that has the knowledge and experience of practical layouts, not just off-the-shelf cabinetry. You want something that's going to last for years to come."</p>
-            <cite>Jennifer</cite>
+            <p>"Our first kitchen he put in in 2000, and it lasted and still going. People still said to me, 'why are you getting a new kitchen that looks like it's brand new?' So that's why I always go back to Woodstock."</p>
+            <cite>Lisa</cite>
           </blockquote>
-          <p style="margin-top:1.5rem;">Jennifer was referred to Woodstock by her builders, Peter and Stuart Davis — the kind of trade-to-trade recommendation that comes from work holding up on previous jobs.</p>
+          <p style="margin-top:1.5rem;">Jack and Lisa have been friends for over 30 years — the kind of relationship that comes from building something once, building it properly, and being there decades later when she called again.</p>
         </div>
       </div>
-      <div class="project-gallery">
-        <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-wide.jpg" alt="Jennifer's kitchen, wide view — photography pending" width="1600" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/jennifers-wardrobe.jpg" alt="Jennifer's walk-in wardrobe — photography pending" width="1200" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/jennifers-laundry.jpg" alt="Jennifer's laundry — photography pending" width="1200" height="900"></div>
-      </div>
+      <?php
+      require __DIR__ . '/_gallery.php';
+      render_project_gallery('lisas-kitchen', [
+          ['src' => '../assets/img/photos/lisas-kitchen-wide.jpg', 'alt' => "Lisa's kitchen, wide view — photography pending"],
+          ['src' => '../assets/img/photos/lisas-kitchen-detail-1.jpg', 'alt' => "Lisa's kitchen, detail — photography pending"],
+          ['src' => '../assets/img/photos/lisas-kitchen-detail-2.jpg', 'alt' => "Lisa's kitchen, joinery detail — photography pending"],
+      ]);
+      ?>
     </div>
   </div>
 
   <section class="section cta-band">
     <div class="wrap">
-      <h2>Renovating an older home?</h2>
+      <h2>Thinking about your own kitchen?</h2>
       <p class="lede">Tell us about your space and how your family uses it — Jack will take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>

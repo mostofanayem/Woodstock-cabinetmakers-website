@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marie's Fireplace &amp; Cabinetry | Woodstock Cabinet Makers</title>
-<meta name="description" content="A fireplace surround and surrounding cabinetry for a Toowong home — a Woodstock Cabinet Makers project.">
-<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/maries-fireplace-and-cabinetry.html">
+<title>Jennifer's Queenslander Renovation | Woodstock Cabinet Makers</title>
+<meta name="description" content="A full renovation of a character Queenslander — new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout. A Woodstock Cabinet Makers project.">
+<link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/jennifers-queenslander-renovation.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -56,36 +56,43 @@
 
 <main id="main">
   <div class="page-header wrap">
-    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Marie's Fireplace &amp; Cabinetry</p>
-    <p class="eyebrow">Fireplace &amp; Cabinetry — Toowong</p>
-    <h1>A room built around the fireplace.</h1>
+    <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Jennifer's Queenslander Renovation</p>
+    <p class="eyebrow">Full Renovation</p>
+    <h1>A character Queenslander, renewed room by room.</h1>
   </div>
 
   <div class="section section--tight">
     <div class="wrap">
       <dl class="project-meta">
-        <div><dt>Scope</dt><dd>Fireplace surround &amp; cabinetry</dd></div>
-        <div><dt>Client</dt><dd>Marie</dd></div>
-        <div><dt>Location</dt><dd>Toowong, Brisbane</dd></div>
+        <div><dt>Scope</dt><dd>Kitchen, laundry, walk-in &amp; built-in wardrobes</dd></div>
+        <div><dt>Client</dt><dd>Jennifer</dd></div>
+        <div><dt>Property</dt><dd>Character Queenslander</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace surround and cabinetry, Toowong — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander kitchen renovation — photography pending" width="1600" height="1000"></div>
         <div>
-          <p class="lede">A fireplace surround and the cabinetry around it, built to anchor the room it sits in — considered down to how the joinery meets the hearth.</p>
-          <p style="margin-top:1.5rem;">Like every Woodstock project, the brief started with a conversation about how the room is actually used, not just how it should look in a photo.</p>
+          <p class="lede">A full renovation of an old Queenslander — a new kitchen, laundry, walk-in wardrobe, linen cupboards and kids' built-in wardrobes, all built around a home with real character.</p>
+          <blockquote class="quote">
+            <p>"You want someone that has the knowledge and experience of practical layouts, not just off-the-shelf cabinetry. You want something that's going to last for years to come."</p>
+            <cite>Jennifer</cite>
+          </blockquote>
+          <p style="margin-top:1.5rem;">Jennifer was referred to Woodstock by her builders, Peter and Stuart Davis — the kind of trade-to-trade recommendation that comes from work holding up on previous jobs.</p>
         </div>
       </div>
-      <div class="project-gallery">
-        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-wide.jpg" alt="Marie's fireplace and cabinetry, wide view — photography pending" width="1600" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-detail-1.jpg" alt="Marie's fireplace and cabinetry, detail — photography pending" width="1200" height="900"></div>
-        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-detail-2.jpg" alt="Marie's fireplace and cabinetry, joinery detail — photography pending" width="1200" height="900"></div>
-      </div>
+      <?php
+      require __DIR__ . '/_gallery.php';
+      render_project_gallery('jennifers-reno', [
+          ['src' => '../assets/img/photos/jennifers-reno-wide.jpg', 'alt' => "Jennifer's kitchen, wide view — photography pending"],
+          ['src' => '../assets/img/photos/jennifers-wardrobe.jpg', 'alt' => "Jennifer's walk-in wardrobe — photography pending"],
+          ['src' => '../assets/img/photos/jennifers-laundry.jpg', 'alt' => "Jennifer's laundry — photography pending"],
+      ]);
+      ?>
     </div>
   </div>
 
   <section class="section cta-band">
     <div class="wrap">
-      <h2>Have a living space in mind?</h2>
+      <h2>Renovating an older home?</h2>
       <p class="lede">Tell us about your space and how your family uses it — Jack will take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>

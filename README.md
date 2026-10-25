@@ -23,21 +23,48 @@ _context/                  Brand voice, brand context, ideal customer profile, b
 
 ## Adding real photos
 
-Every photo on the site lives at a fixed filename under `assets/img/photos/` (e.g.
-`hero.jpg`, `lisas-kitchen-main.jpg`, `maries-fireplace-wide.jpg`) — the HTML already
-points at these paths, so replacing the file is the whole job, no code changes needed.
+Open `/admin` on the live site, log in, and:
 
-The easiest way: open `/admin` on the live site, log in, and either upload a file
-straight from a phone/computer, or paste a Google Drive share link next to a slot —
-the server fetches it directly from Drive at full resolution, so there's no need to
-download-then-upload. Each slot is labeled (which project, which shot) and the tool
-automatically re-orients, resizes (max 2400px edge) and compresses the photo to the
-right filename. Drive links only work for files shared as **"Anyone with the link"**
-(the server has no one's personal Google login) and only `drive.google.com` /
-`googleusercontent.com` URLs are accepted. `/admin` is not linked from the public site
-and is excluded in `robots.txt`, but it is only as secure as its password
-(`ADMIN_PASSWORD_HASH` in `api/config.php`) — treat that page link and password like
-any other login.
+- **Cover photo** (one per project, used on cards/thumbnails sitewide) and the
+  **homepage hero** — upload a file, or paste a single Drive file's share link.
+- **Project gallery** (any number of photos, shown on that project's own page) —
+  paste a link to a whole **Drive folder** and every image in it becomes the
+  gallery, replacing whatever was there before. The first two photos (by filename
+  order in Drive — rename files in Drive, e.g. `1 ...`, `2 ...`, to control this)
+  show larger in a featured grid; every photo opens full-screen in a lightbox on
+  click. No fixed slots, no code changes — drop 3 photos or 30.
+
+Either way the server resizes (max 2400px edge), auto-orients and compresses each
+photo to a sensible web size automatically.
+
+Both the single-link and folder-link options need the Drive file/folder shared as
+**"Anyone with the link"** — the server has no one's personal Google login, so a
+private link just fails with a clear error. The folder importer additionally needs
+a Google Cloud API key (see below); the single-link/upload options work without it.
+
+`/admin` is not linked from the public site and is excluded in `robots.txt`, but
+it is only as secure as its password (`ADMIN_PASSWORD_HASH` in `api/config.php`) —
+treat that page link and password like any other login.
+
+### Setting up the Google Cloud API key (for folder import + live reviews)
+
+Both the Drive folder importer and live Google Reviews (optional, has a curated
+fallback) use one Google Cloud API key. ~5 minutes, free:
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com) and create a
+   new project (or pick an existing one) — top-left project dropdown → "New Project".
+2. Enable the APIs: go to "APIs & Services" → "Library", search for and enable
+   **"Google Drive API"**, and also **"Places API (New)"** if you want live reviews.
+3. Create a key: "APIs & Services" → "Credentials" → "Create Credentials" → "API key".
+4. Restrict it (important — an unrestricted key is a liability): click the new key,
+   under "API restrictions" choose "Restrict key" and select Drive API (+ Places API
+   if enabled), under "Application restrictions" choose "IP addresses" and add your
+   Hostinger server's outbound IP (ask Hostinger support or check hPanel if unsure).
+5. Paste the key into `api/config.php` as `GOOGLE_API_KEY` (and `GOOGLE_PLACES_API_KEY`
+   if reusing it for reviews too — same key value works for both fields).
+6. Billing: Drive API's free tier comfortably covers this use (a handful of folder
+   listings a month); Google requires a billing account attached to the project even
+   for free-tier usage, but you won't be charged at this volume.
 
 ## Local preview
 

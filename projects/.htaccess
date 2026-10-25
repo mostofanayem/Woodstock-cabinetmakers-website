@@ -1,0 +1,6 @@
+# The 4 project detail pages moved from .html to .php (server-rendered photo
+# galleries). Redirect anyone with an old link/bookmark.
+RedirectMatch 301 ^/projects/lisas-kitchen\.html$ /projects/lisas-kitchen.php
+RedirectMatch 301 ^/projects/maries-fireplace-and-cabinetry\.html$ /projects/maries-fireplace-and-cabinetry.php
+RedirectMatch 301 ^/projects/debbies-entertainment-kitchen-wardrobe\.html$ /projects/debbies-entertainment-kitchen-wardrobe.php
+RedirectMatch 301 ^/projects/jennifers-queenslander-renovation\.html$ /projects/jennifers-queenslander-renovation.php

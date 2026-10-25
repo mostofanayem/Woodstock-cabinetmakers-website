@@ -38,4 +38,14 @@ return [
     //   php -r "echo password_hash('your-password-here', PASSWORD_DEFAULT), PHP_EOL;"
     // and paste the result below. Never put the plain-text password here.
     'ADMIN_PASSWORD_HASH' => '',
+
+    // Google Cloud API key with the "Google Drive API" enabled (and, optionally,
+    // "Places API (New)" on the same key/project to also power live Google
+    // Reviews — see GOOGLE_PLACES_API_KEY above). Used only to list the photos
+    // inside a Drive folder you paste into /admin's bulk importer; the folder
+    // must be shared "Anyone with the link" since this key has no personal
+    // Google login behind it. Restrict the key in Google Cloud Console to:
+    //   - API restriction: Google Drive API (+ Places API (New) if reused)
+    //   - Application restriction: IP addresses -> your Hostinger server's outbound IP
+    'GOOGLE_API_KEY' => '',
 ];
