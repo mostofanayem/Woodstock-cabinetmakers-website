@@ -2,8 +2,14 @@
 /**
  * Private photo-upload tool. Not linked from anywhere on the public site.
  * Log in with the admin password (see api/config.php), drop a photo into any
- * labeled slot, and it's resized/optimised and saved straight over the
- * matching placeholder — no code changes, no FTP needed.
+ * labeled slot (or paste a Google Drive share link), and it's resized and
+ * optimised and saved straight over the matching placeholder — no code
+ * changes, no FTP needed.
+ *
+ * Drive links: the file must be shared as "Anyone with the link" — this
+ * script fetches it directly from Google's servers, it cannot use anyone's
+ * personal Google login. Only drive.google.com / googleusercontent.com URLs
+ * are accepted (fetching arbitrary URLs server-side would be a security risk).
  */
 
 session_start();
@@ -94,35 +100,144 @@ if ($isAuthed && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['upload_s
             @mkdir($PHOTOS_DIR, 0755, true);
         }
         foreach ($SLOTS as $key => [$filename, $label, $group]) {
-            if (!isset($_FILES[$key]) || $_FILES[$key]['error'] === UPLOAD_ERR_NO_FILE) {
+            $hasFile = isset($_FILES[$key]) && $_FILES[$key]['error'] !== UPLOAD_ERR_NO_FILE;
+            $driveUrl = trim($_POST[$key . '_url'] ?? '');
+
+            if (!$hasFile && $driveUrl === '') {
                 continue; // slot left empty — nothing to do
             }
-            $file = $_FILES[$key];
-            if ($file['error'] !== UPLOAD_ERR_OK) {
-                $results[] = ['ok' => false, 'label' => $label, 'message' => 'Upload failed (error code ' . $file['error'] . ').'];
-                continue;
-            }
-            if ($file['size'] > $MAX_BYTES) {
-                $results[] = ['ok' => false, 'label' => $label, 'message' => 'File is larger than 25MB.'];
-                continue;
-            }
-            $info = @getimagesize($file['tmp_name']);
-            if (!$info || !in_array($info['mime'], ['image/jpeg', 'image/png', 'image/webp'], true)) {
-                $results[] = ['ok' => false, 'label' => $label, 'message' => 'Not a JPEG, PNG or WebP image.'];
-                continue;
-            }
+
             $destination = $PHOTOS_DIR . '/' . $filename;
-            $ok = processAndSaveImage($file['tmp_name'], $info['mime'], $destination, $MAX_EDGE);
+
+            if ($hasFile) {
+                $file = $_FILES[$key];
+                if ($file['error'] !== UPLOAD_ERR_OK) {
+                    $results[] = ['ok' => false, 'label' => $label, 'message' => 'Upload failed (error code ' . $file['error'] . ').'];
+                    continue;
+                }
+                if ($file['size'] > $MAX_BYTES) {
+                    $results[] = ['ok' => false, 'label' => $label, 'message' => 'File is larger than 25MB.'];
+                    continue;
+                }
+                $tmpPath = $file['tmp_name'];
+                $sourceDesc = 'upload';
+            } else {
+                $fetch = fetchFromDriveLink($driveUrl, $MAX_BYTES);
+                if ($fetch['error']) {
+                    $results[] = ['ok' => false, 'label' => $label, 'message' => $fetch['error']];
+                    continue;
+                }
+                $tmpPath = $fetch['tmp_path'];
+                $sourceDesc = 'Drive link';
+            }
+
+            $info = @getimagesize($tmpPath);
+            if (!$info || !in_array($info['mime'], ['image/jpeg', 'image/png', 'image/webp'], true)) {
+                $results[] = ['ok' => false, 'label' => $label, 'message' => "Not a JPEG, PNG or WebP image ($sourceDesc)."];
+                if (!$hasFile) @unlink($tmpPath);
+                continue;
+            }
+            $ok = processAndSaveImage($tmpPath, $info['mime'], $destination, $MAX_EDGE);
+            if (!$hasFile) @unlink($tmpPath);
             $results[] = [
                 'ok' => $ok,
                 'label' => $label,
-                'message' => $ok ? 'Updated.' : 'Could not process this image on the server.',
+                'message' => $ok ? "Updated from $sourceDesc." : 'Could not process this image on the server.',
             ];
         }
         if (!$results) {
-            $results[] = ['ok' => false, 'label' => 'Form', 'message' => 'No files were selected.'];
+            $results[] = ['ok' => false, 'label' => 'Form', 'message' => 'No files or links were given.'];
         }
     }
+}
+
+/**
+ * Pull a Google Drive file ID out of any of the common share-link shapes:
+ *   https://drive.google.com/file/d/FILE_ID/view?usp=sharing
+ *   https://drive.google.com/open?id=FILE_ID
+ *   https://drive.google.com/uc?id=FILE_ID&export=download
+ *   https://lh3.googleusercontent.com/d/FILE_ID
+ * Returns null if nothing recognisable was found.
+ */
+function extractDriveFileId(string $url): ?string
+{
+    if (preg_match('#/d/([a-zA-Z0-9_-]{10,})#', $url, $m)) {
+        return $m[1];
+    }
+    if (preg_match('#[?&]id=([a-zA-Z0-9_-]{10,})#', $url, $m)) {
+        return $m[1];
+    }
+    return null;
+}
+
+/**
+ * Downloads a Google Drive-hosted image straight from Google's own servers
+ * into a temp file. Only accepts drive.google.com / googleusercontent.com
+ * URLs (never an arbitrary caller-supplied host — this runs server-side on
+ * a logged-in request, so an open URL fetcher here would be an SSRF risk).
+ * The source file must be shared as "Anyone with the link"; this request
+ * carries no Google login of its own.
+ *
+ * @return array{tmp_path: ?string, error: ?string}
+ */
+function fetchFromDriveLink(string $url, int $maxBytes): array
+{
+    $host = parse_url($url, PHP_URL_HOST);
+    $allowedHosts = ['drive.google.com', 'docs.google.com', 'lh3.googleusercontent.com', 'googleusercontent.com'];
+    $hostOk = $host && array_filter($allowedHosts, fn($h) => $host === $h || str_ends_with($host, '.' . $h));
+    if (!$host || !$hostOk) {
+        return ['tmp_path' => null, 'error' => 'That link needs to be a drive.google.com (or googleusercontent.com) URL.'];
+    }
+
+    $fileId = extractDriveFileId($url);
+    if (!$fileId) {
+        return ['tmp_path' => null, 'error' => "Couldn't find a file ID in that link — paste the normal 'Share' link from Drive."];
+    }
+
+    // Google's image-serving host — gives the original resolution, works for
+    // anything shared "Anyone with the link", and skips the virus-scan
+    // interstitial that drive.google.com/uc shows for larger files.
+    $fetchUrl = "https://lh3.googleusercontent.com/d/{$fileId}=s0";
+
+    $tmpPath = sys_get_temp_dir() . '/drive-fetch-' . bin2hex(random_bytes(8));
+    $fh = fopen($tmpPath, 'wb');
+    if (!$fh) {
+        return ['tmp_path' => null, 'error' => 'Could not create a temp file on the server.'];
+    }
+
+    $tooBig = false;
+    $ch = curl_init($fetchUrl);
+    curl_setopt_array($ch, [
+        CURLOPT_FILE => $fh,
+        CURLOPT_FOLLOWLOCATION => true,
+        CURLOPT_MAXREDIRS => 5,
+        CURLOPT_TIMEOUT => 25,
+        CURLOPT_USERAGENT => 'Mozilla/5.0 (compatible; WoodstockPhotoUpload/1.0)',
+        CURLOPT_NOPROGRESS => false,
+        CURLOPT_PROGRESSFUNCTION => function ($res, $expectedDown, $downloaded) use ($maxBytes, &$tooBig) {
+            if ($downloaded > $maxBytes) {
+                $tooBig = true;
+                return 1; // non-zero aborts the transfer
+            }
+            return 0;
+        },
+    ]);
+    curl_exec($ch);
+    $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    $curlError = curl_error($ch);
+    curl_close($ch);
+    fclose($fh);
+
+    if ($tooBig) {
+        @unlink($tmpPath);
+        return ['tmp_path' => null, 'error' => 'That file is larger than 25MB.'];
+    }
+    if ($curlError || $httpCode !== 200 || filesize($tmpPath) === 0) {
+        @unlink($tmpPath);
+        return ['tmp_path' => null, 'error' => "Couldn't fetch that file (HTTP $httpCode). Make sure it's shared as \"Anyone with the link\"."];
+    }
+
+    return ['tmp_path' => $tmpPath, 'error' => null];
 }
 
 /**
@@ -224,10 +339,12 @@ $photosUrl = '../assets/img/photos/';
   .error { background: rgba(198,83,66,0.15); border: 1px solid #c65342; padding: 0.75rem 1rem; border-radius: 4px; margin-bottom: 1rem; font-size: 0.9rem; }
   .group { margin-bottom: 2.5rem; }
   .group h2 { font-size: 1.1rem; border-bottom: 1px solid #565448; padding-bottom: 0.5rem; margin-bottom: 1rem; color: #c4beb2; }
-  .slot { display: flex; gap: 1rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+  .slot { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.25rem; flex-wrap: wrap; }
   .slot img { width: 90px; height: 68px; object-fit: cover; border-radius: 4px; border: 1px solid #565448; flex-shrink: 0; }
   .slot .field { flex: 1; min-width: 220px; }
   .slot label { display: block; font-size: 0.85rem; color: #c4beb2; margin-bottom: 0.3rem; }
+  .slot .or { font-size: 0.78rem; color: #80987d; margin: 0.4rem 0 0.3rem; }
+  input[type="url"] { width: 100%; padding: 0.55rem 0.7rem; background: #161513; border: 1px solid #565448; border-radius: 4px; color: #f5f1e8; font-size: 0.9rem; }
   .topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
   .results { margin-bottom: 2rem; }
   .result-row { padding: 0.5rem 0.8rem; border-radius: 4px; margin-bottom: 0.4rem; font-size: 0.9rem; }
@@ -284,13 +401,15 @@ $photosUrl = '../assets/img/photos/';
           <div class="field">
             <label for="<?= $key ?>"><?= htmlspecialchars($label) ?></label>
             <input type="file" id="<?= $key ?>" name="<?= $key ?>" accept="image/jpeg,image/png,image/webp">
+            <p class="or">or paste a Google Drive share link ("Anyone with the link")</p>
+            <input type="url" id="<?= $key ?>_url" name="<?= $key ?>_url" placeholder="https://drive.google.com/file/d/...">
           </div>
         </div>
       <?php endforeach; ?>
       </div>
       <div class="save-bar">
         <button type="submit" name="upload_submit" value="1">Save Photos</button>
-        <small class="hint" style="margin-left:1rem;">JPEG, PNG or WebP — resized automatically, up to 25MB each.</small>
+        <small class="hint" style="margin-left:1rem;">JPEG, PNG or WebP, up to 25MB — upload a file or paste a Drive link, not both.</small>
       </div>
     </form>
   </div>

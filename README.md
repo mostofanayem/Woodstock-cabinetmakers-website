@@ -27,12 +27,17 @@ Every photo on the site lives at a fixed filename under `assets/img/photos/` (e.
 `hero.jpg`, `lisas-kitchen-main.jpg`, `maries-fireplace-wide.jpg`) — the HTML already
 points at these paths, so replacing the file is the whole job, no code changes needed.
 
-The easiest way: open `/admin` on the live site, log in, and upload straight from a
-phone or computer — each slot is labeled (which project, which shot) and the tool
+The easiest way: open `/admin` on the live site, log in, and either upload a file
+straight from a phone/computer, or paste a Google Drive share link next to a slot —
+the server fetches it directly from Drive at full resolution, so there's no need to
+download-then-upload. Each slot is labeled (which project, which shot) and the tool
 automatically re-orients, resizes (max 2400px edge) and compresses the photo to the
-right filename. `/admin` is not linked from the public site and is excluded in
-`robots.txt`, but it is only as secure as its password (`ADMIN_PASSWORD_HASH` in
-`api/config.php`) — treat that page link and password like any other login.
+right filename. Drive links only work for files shared as **"Anyone with the link"**
+(the server has no one's personal Google login) and only `drive.google.com` /
+`googleusercontent.com` URLs are accepted. `/admin` is not linked from the public site
+and is excluded in `robots.txt`, but it is only as secure as its password
+(`ADMIN_PASSWORD_HASH` in `api/config.php`) — treat that page link and password like
+any other login.
 
 ## Local preview
 
