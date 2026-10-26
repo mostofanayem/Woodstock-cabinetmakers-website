@@ -117,6 +117,10 @@
         <a class="btn btn--ghost" href="#contact">Get In Touch</a>
       </div>
     </div>
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span>Scroll Down</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 4v15M6 13l6 6 6-6"/></svg>
+    </div>
   </section>
 
   <section class="section reviews" id="reviews" data-reviews-root data-reviews-endpoint="/api/google-reviews-proxy.php">
@@ -134,23 +138,39 @@
         <article class="review-card">
           <div class="review-card__stars">★★★★★</div>
           <p>"We've had the pleasure of working with Jack and his team from Woodstock Cabinet Makers on two occasions now. The first was to design and install a fabulous entertainment centre in our living room and the second was to redesign and install our laundry. Jack is a master of his trade who is highly approachable, listens and problem-solves each project to ensure the best final product. A totally trustworthy firm with strong leadership and high standards."</p>
-          <div class="review-card__who"><strong>Lynda Kennedy</strong>Entertainment centre &amp; laundry redesign</div>
+          <div class="review-card__who">
+            <span class="review-card__avatar" aria-hidden="true">L</span>
+            <span class="review-card__who-text"><strong>Lynda Kennedy</strong>Entertainment centre &amp; laundry redesign</span>
+          </div>
         </article>
         <article class="review-card">
           <div class="review-card__stars">★★★★★</div>
           <p>"Jack and his team did a kitchen upgrade for us and we could not be happier with it. Cupboard space, functionality and great quality finish. Superb job!"</p>
-          <div class="review-card__who"><strong>Kerry Waters</strong>Kitchen upgrade</div>
+          <div class="review-card__who">
+            <span class="review-card__avatar" aria-hidden="true">K</span>
+            <span class="review-card__who-text"><strong>Kerry Waters</strong>Kitchen upgrade</span>
+          </div>
         </article>
         <article class="review-card">
           <div class="review-card__stars">★★★★★</div>
           <p>"The cabinets are beautifully crafted, your pride in your work is evident in all the details and the quality of the finish."</p>
-          <div class="review-card__who"><strong>Leigh</strong>Laundry &amp; pantry redesign</div>
+          <div class="review-card__who">
+            <span class="review-card__avatar" aria-hidden="true">L</span>
+            <span class="review-card__who-text"><strong>Leigh</strong>Laundry &amp; pantry redesign</span>
+          </div>
         </article>
         <article class="review-card">
           <div class="review-card__stars">★★★★★</div>
           <p>"The standard of workmanship is excellent. I have no hesitation in recommending you to anyone seeking the professional services of a first class cabinetmaker."</p>
-          <div class="review-card__who"><strong>Steve</strong>Home office</div>
+          <div class="review-card__who">
+            <span class="review-card__avatar" aria-hidden="true">S</span>
+            <span class="review-card__who-text"><strong>Steve</strong>Home office</span>
+          </div>
         </article>
+      </div>
+      <div class="track-nav" style="justify-content:center;margin-top:1.5rem;" data-track-nav>
+        <button type="button" class="track-nav__btn" data-track-prev aria-label="Previous reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button type="button" class="track-nav__btn" data-track-next aria-label="Next reviews"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
       <a class="reviews__footer-link btn btn--ghost btn--sm" href="https://www.google.com/maps/place/Woodstock+Cabinet+Makers/@-27.5634743,153.0142941,17z/data=!4m8!3m7!1s0x6b9145591df55ee5:0x283b90e0700622cd!8m2!3d-27.5634743!4d153.016869!9m1!1b1!16s%2Fg%2F1tf2xzjl" target="_blank" rel="noopener">See All Reviews on Google</a>
     </div>
@@ -175,42 +195,64 @@
   </div>
 
   <section class="section projects-band" id="work">
-    <div class="wrap">
+    <div class="wrap" data-track>
       <div class="section-head">
         <div>
           <p class="eyebrow">Browse Our Projects</p>
           <h2>Considered layouts, done properly, built to last.</h2>
         </div>
-      </div>
-      <hr class="hairline" style="margin-bottom:2.5rem;">
-      <div data-track>
-        <div class="project-track">
-          <a class="project-card" href="projects/lisas-kitchen.php">
-            <div class="img-frame"><span class="project-card__tag">Kitchen</span><img src="assets/img/photos/lisas-kitchen-main.jpg" alt="Lisa's kitchen, built by Woodstock Cabinet Makers" width="1600" height="1000"></div>
-            <h3>Lisa's Kitchen</h3>
-            <p>A kitchen built in 2000. It lasted so well, Lisa never considered anyone else for the next one.</p>
-            <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-          </a>
-          <a class="project-card" href="projects/maries-fireplace-and-cabinetry.php">
-            <div class="img-frame"><span class="project-card__tag">Fireplace &amp; Cabinetry</span><img src="assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace and cabinetry, Toowong" width="1600" height="1000"></div>
-            <h3>Marie's Fireplace &amp; Cabinetry</h3>
-            <p>A blank wall, and then a fireplace built into art — Toowong.</p>
-            <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-          </a>
-          <a class="project-card" href="projects/debbies-entertainment-kitchen-wardrobe.php">
-            <div class="img-frame"><span class="project-card__tag">Whole Home</span><img src="assets/img/photos/debbies-project-main.jpg" alt="Debbie's entertainment wall unit, kitchen and wardrobe, Toowong" width="1600" height="1000"></div>
-            <h3>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe</h3>
-            <p>A media wall with more than a TV built into it — Toowong.</p>
-            <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-          </a>
-          <a class="project-card" href="projects/jennifers-queenslander-renovation.php">
-            <div class="img-frame"><span class="project-card__tag">Full Renovation</span><img src="assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander renovation" width="1600" height="1000"></div>
-            <h3>Jennifer's Queenslander Renovation</h3>
-            <p>A full renovation of a character Queenslander — new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout.</p>
-            <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
-          </a>
+        <div class="track-nav">
+          <button type="button" class="track-nav__btn" data-track-prev aria-label="Previous projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 5l-7 7 7 7"/></svg></button>
+          <button type="button" class="track-nav__btn" data-track-next aria-label="Next projects"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 5l7 7-7 7"/></svg></button>
         </div>
       </div>
+      <hr class="hairline" style="margin-top:1.75rem;margin-bottom:2.5rem;">
+      <div class="project-track">
+          <a class="project-card" href="projects/lisas-kitchen.php">
+            <div class="img-frame">
+              <span class="project-card__tag">Kitchen</span>
+              <img src="assets/img/photos/lisas-kitchen-main.jpg" alt="Lisa's kitchen, built by Woodstock Cabinet Makers" width="1600" height="1000">
+              <div class="project-card__overlay">
+                <h3>Lisa's Kitchen</h3>
+                <p>A kitchen built in 2000. It lasted so well, Lisa never considered anyone else for the next one.</p>
+                <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+              </div>
+            </div>
+          </a>
+          <a class="project-card" href="projects/maries-fireplace-and-cabinetry.php">
+            <div class="img-frame">
+              <span class="project-card__tag">Fireplace &amp; Cabinetry</span>
+              <img src="assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace and cabinetry, Toowong" width="1600" height="1000">
+              <div class="project-card__overlay">
+                <h3>Marie's Fireplace &amp; Cabinetry</h3>
+                <p>A blank wall, and then a fireplace built into art — Toowong.</p>
+                <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+              </div>
+            </div>
+          </a>
+          <a class="project-card" href="projects/debbies-entertainment-kitchen-wardrobe.php">
+            <div class="img-frame">
+              <span class="project-card__tag">Whole Home</span>
+              <img src="assets/img/photos/debbies-project-main.jpg" alt="Debbie's entertainment wall unit, kitchen and wardrobe, Toowong" width="1600" height="1000">
+              <div class="project-card__overlay">
+                <h3>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe</h3>
+                <p>A media wall with more than a TV built into it — Toowong.</p>
+                <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+              </div>
+            </div>
+          </a>
+          <a class="project-card" href="projects/jennifers-queenslander-renovation.php">
+            <div class="img-frame">
+              <span class="project-card__tag">Full Renovation</span>
+              <img src="assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander renovation" width="1600" height="1000">
+              <div class="project-card__overlay">
+                <h3>Jennifer's Queenslander Renovation</h3>
+                <p>A full renovation of a character Queenslander — new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout.</p>
+                <span class="project-card__link">View Project <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h11M9 4l4 4-4 4"/></svg></span>
+              </div>
+            </div>
+          </a>
+        </div>
       <div class="projects-band__footer">
         <a class="btn btn--ghost" href="projects/index.html">View All Projects</a>
       </div>

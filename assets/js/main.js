@@ -145,6 +145,7 @@
       if (track) {
         track.innerHTML = "";
         data.reviews.slice(0, 8).forEach(function (review) {
+          var author = review.author || "Google user";
           var card = document.createElement("article");
           card.className = "review-card";
           var stars = document.createElement("div");
@@ -154,10 +155,18 @@
           text.textContent = review.text || "";
           var who = document.createElement("div");
           who.className = "review-card__who";
+          var avatar = document.createElement("span");
+          avatar.className = "review-card__avatar";
+          avatar.setAttribute("aria-hidden", "true");
+          avatar.textContent = author.trim().charAt(0).toUpperCase() || "G";
+          var whoText = document.createElement("span");
+          whoText.className = "review-card__who-text";
           var strong = document.createElement("strong");
-          strong.textContent = review.author || "Google user";
-          who.appendChild(strong);
-          who.appendChild(document.createTextNode(review.relativeTime || ""));
+          strong.textContent = author;
+          whoText.appendChild(strong);
+          whoText.appendChild(document.createTextNode(review.relativeTime || ""));
+          who.appendChild(avatar);
+          who.appendChild(whoText);
           card.appendChild(stars);
           card.appendChild(text);
           card.appendChild(who);
