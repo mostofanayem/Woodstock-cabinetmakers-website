@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe | Woodstock Cabinet Makers</title>
-<meta name="description" content="An entertainment wall unit, kitchen and wardrobe across a Toowong home — a Woodstock Cabinet Makers project.">
+<meta name="description" content="A media wall with more than a TV built into it, plus kitchen and wardrobe work across a Toowong home — a Woodstock Cabinet Makers project.">
 <link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/debbies-entertainment-kitchen-wardrobe.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -58,29 +58,33 @@
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe</p>
     <p class="eyebrow">Whole Home — Toowong</p>
-    <h1>Three rooms, one considered fit-out.</h1>
+    <h1>A media wall with more than a TV built into it.</h1>
   </div>
 
   <div class="section section--tight">
     <div class="wrap">
       <dl class="project-meta">
         <div><dt>Scope</dt><dd>Entertainment wall, kitchen &amp; wardrobe</dd></div>
-        <div><dt>Client</dt><dd>Debbie</dd></div>
+        <div><dt>Client</dt><dd>Debbie &amp; Greg</dd></div>
         <div><dt>Location</dt><dd>Toowong, Brisbane</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/debbies-project-main.jpg" alt="Debbie's entertainment wall unit, Toowong — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/debbies-project-main.jpg" alt="Debbie's custom entertainment unit with built-in TV niche and lit shelving, Toowong" width="1600" height="1000"></div>
         <div>
-          <p class="lede">An entertainment wall unit, kitchen and wardrobe across a Toowong home — three rooms built as part of the same considered fit-out.</p>
-          <p style="margin-top:1.5rem;">Spanning the living room, kitchen and bedroom, this project meant keeping the same quality of joinery and finish consistent across very different spaces.</p>
+          <p class="lede">Debbie and her husband Greg found Jack the way a lot of his clients do — through a friend (thanks, Marie). The brief: a smarter way to use a living room that doesn't get much natural light. The result is a custom entertainment unit with a built-in TV niche and open, lit shelving for the pieces Debbie had always wanted to display properly — alongside a kitchen and wardrobe fit-out across the rest of the home.</p>
+          <blockquote class="quote">
+            <p>"I found Jack was very approachable, and together we came up with a product that matched what I wanted and my budget. He's a really good communicator, and that helped our whole process."</p>
+            <cite>Debbie</cite>
+          </blockquote>
+          <p style="margin-top:1.5rem;">As Debbie put it, it was really Jack who was the inspiration behind it all.</p>
         </div>
       </div>
       <?php
       require __DIR__ . '/_gallery.php';
       render_project_gallery('debbies-project', [
-          ['src' => '../assets/img/photos/debbies-project-wide.jpg', 'alt' => "Debbie's entertainment wall unit, wide view — photography pending"],
-          ['src' => '../assets/img/photos/debbies-kitchen-detail.jpg', 'alt' => "Debbie's kitchen, detail — photography pending"],
-          ['src' => '../assets/img/photos/debbies-wardrobe-detail.jpg', 'alt' => "Debbie's wardrobe, detail — photography pending"],
+          ['src' => '../assets/img/photos/debbies-project-wide.jpg', 'alt' => "Debbie's entertainment wall unit, wide view"],
+          ['src' => '../assets/img/photos/debbies-kitchen-detail.jpg', 'alt' => "Debbie's kitchen, detail"],
+          ['src' => '../assets/img/photos/debbies-wardrobe-detail.jpg', 'alt' => "Debbie's wardrobe, detail"],
       ]);
       ?>
     </div>

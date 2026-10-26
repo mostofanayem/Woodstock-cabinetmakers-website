@@ -69,22 +69,22 @@
         <div><dt>Builder</dt><dd>Jack Vorgias</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/lisas-kitchen-main.jpg" alt="Lisa's kitchen, built by Woodstock Cabinet Makers — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/lisas-kitchen-main.jpg" alt="Lisa's kitchen, built by Woodstock Cabinet Makers" width="1600" height="1000"></div>
         <div>
-          <p class="lede">In 2000, Jack Vorgias built Lisa a kitchen. It lasted so well, she never considered anyone else for the next one.</p>
+          <p class="lede">In 2000, Jack built Lisa her first kitchen. 26 years later, when it was finally time for her next one, there was only one call to make.</p>
           <blockquote class="quote">
             <p>"Our first kitchen he put in in 2000, and it lasted and still going. People still said to me, 'why are you getting a new kitchen that looks like it's brand new?' So that's why I always go back to Woodstock."</p>
             <cite>Lisa</cite>
           </blockquote>
-          <p style="margin-top:1.5rem;">Jack and Lisa have been friends for over 30 years — the kind of relationship that comes from building something once, building it properly, and being there decades later when she called again.</p>
+          <p style="margin-top:1.5rem;">Jack and Lisa have been friends for over 30 years — the kind of relationship that comes from building something once, building it properly, and being there decades later when she called again. Their story is told in full in a short documentary: a 40-year friendship, a kitchen that outlasted its own era, and what it feels like when a home is designed around how you actually live.</p>
         </div>
       </div>
       <?php
       require __DIR__ . '/_gallery.php';
       render_project_gallery('lisas-kitchen', [
-          ['src' => '../assets/img/photos/lisas-kitchen-wide.jpg', 'alt' => "Lisa's kitchen, wide view — photography pending"],
-          ['src' => '../assets/img/photos/lisas-kitchen-detail-1.jpg', 'alt' => "Lisa's kitchen, detail — photography pending"],
-          ['src' => '../assets/img/photos/lisas-kitchen-detail-2.jpg', 'alt' => "Lisa's kitchen, joinery detail — photography pending"],
+          ['src' => '../assets/img/photos/lisas-kitchen-wide.jpg', 'alt' => "Lisa's kitchen, wide view"],
+          ['src' => '../assets/img/photos/lisas-kitchen-detail-1.jpg', 'alt' => "Lisa's kitchen, detail"],
+          ['src' => '../assets/img/photos/lisas-kitchen-detail-2.jpg', 'alt' => "Lisa's kitchen, joinery detail"],
       ]);
       ?>
     </div>

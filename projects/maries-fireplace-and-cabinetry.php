@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marie's Fireplace &amp; Cabinetry | Woodstock Cabinet Makers</title>
-<meta name="description" content="A fireplace surround and surrounding cabinetry for a Toowong home — a Woodstock Cabinet Makers project.">
+<meta name="description" content="A blank wall, and then a fireplace built into art — Marie's fireplace and cabinetry in Toowong, a Woodstock Cabinet Makers project.">
 <link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/maries-fireplace-and-cabinetry.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
@@ -58,7 +58,7 @@
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Marie's Fireplace &amp; Cabinetry</p>
     <p class="eyebrow">Fireplace &amp; Cabinetry — Toowong</p>
-    <h1>A room built around the fireplace.</h1>
+    <h1>A blank wall, and then a fireplace built into art.</h1>
   </div>
 
   <div class="section section--tight">
@@ -69,18 +69,22 @@
         <div><dt>Location</dt><dd>Toowong, Brisbane</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace surround and cabinetry, Toowong — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/maries-fireplace-main.jpg" alt="Marie's fireplace, framed in black stone with a floating oak mantel, Toowong" width="1600" height="1000"></div>
         <div>
-          <p class="lede">A fireplace surround and the cabinetry around it, built to anchor the room it sits in — considered down to how the joinery meets the hearth.</p>
-          <p style="margin-top:1.5rem;">Like every Woodstock project, the brief started with a conversation about how the room is actually used, not just how it should look in a photo.</p>
+          <p class="lede">When Marie moved into her Toowong apartment, the lounge room had one bare wall. She couldn't find what she wanted in the commercial market, so Jack built it: a linear fireplace framed in black stone, a floating oak mantel, and lit shelving for the pieces she wanted on display.</p>
+          <blockquote class="quote">
+            <p>"What I've achieved is a high quality piece of furniture, but also, to me, it's an artwork."</p>
+            <cite>Marie</cite>
+          </blockquote>
+          <p style="margin-top:1.5rem;">She worked with Jack on a design that balanced what she wanted with what was actually practical. "I came out every day for a whole week with a big smile on my face saying, this is just beautiful," she said.</p>
         </div>
       </div>
       <?php
       require __DIR__ . '/_gallery.php';
       render_project_gallery('maries-fireplace', [
-          ['src' => '../assets/img/photos/maries-fireplace-wide.jpg', 'alt' => "Marie's fireplace and cabinetry, wide view — photography pending"],
-          ['src' => '../assets/img/photos/maries-fireplace-detail-1.jpg', 'alt' => "Marie's fireplace and cabinetry, detail — photography pending"],
-          ['src' => '../assets/img/photos/maries-fireplace-detail-2.jpg', 'alt' => "Marie's fireplace and cabinetry, joinery detail — photography pending"],
+          ['src' => '../assets/img/photos/maries-fireplace-wide.jpg', 'alt' => "Marie's fireplace and cabinetry, wide view"],
+          ['src' => '../assets/img/photos/maries-fireplace-detail-1.jpg', 'alt' => "Marie's fireplace, black stone and oak mantel detail"],
+          ['src' => '../assets/img/photos/maries-fireplace-detail-2.jpg', 'alt' => "Marie's fireplace, joinery detail"],
       ]);
       ?>
     </div>

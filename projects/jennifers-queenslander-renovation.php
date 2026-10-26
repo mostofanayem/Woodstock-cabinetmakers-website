@@ -69,9 +69,9 @@
         <div><dt>Property</dt><dd>Character Queenslander</dd></div>
       </dl>
       <div class="two-col">
-        <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander kitchen renovation — photography pending" width="1600" height="1000"></div>
+        <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander kitchen renovation" width="1600" height="1000"></div>
         <div>
-          <p class="lede">A full renovation of an old Queenslander — a new kitchen, laundry, walk-in wardrobe, linen cupboards and kids' built-in wardrobes, all built around a home with real character.</p>
+          <p class="lede">Jennifer, mum of two, owned a once run-down old Queenslander that needed to work harder for her young family. The brief was simple: build it around how they actually live — a new kitchen, a proper laundry, walk-in wardrobe, linen cupboards and built-in wardrobes for every kid's room.</p>
           <blockquote class="quote">
             <p>"You want someone that has the knowledge and experience of practical layouts, not just off-the-shelf cabinetry. You want something that's going to last for years to come."</p>
             <cite>Jennifer</cite>
@@ -82,9 +82,9 @@
       <?php
       require __DIR__ . '/_gallery.php';
       render_project_gallery('jennifers-reno', [
-          ['src' => '../assets/img/photos/jennifers-reno-wide.jpg', 'alt' => "Jennifer's kitchen, wide view — photography pending"],
-          ['src' => '../assets/img/photos/jennifers-wardrobe.jpg', 'alt' => "Jennifer's walk-in wardrobe — photography pending"],
-          ['src' => '../assets/img/photos/jennifers-laundry.jpg', 'alt' => "Jennifer's laundry — photography pending"],
+          ['src' => '../assets/img/photos/jennifers-reno-wide.jpg', 'alt' => "Jennifer's kitchen, wide view"],
+          ['src' => '../assets/img/photos/jennifers-wardrobe.jpg', 'alt' => "Jennifer's walk-in wardrobe"],
+          ['src' => '../assets/img/photos/jennifers-laundry.jpg', 'alt' => "Jennifer's laundry"],
       ]);
       ?>
     </div>
