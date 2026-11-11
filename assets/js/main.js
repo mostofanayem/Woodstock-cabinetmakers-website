@@ -228,8 +228,8 @@
     onScroll();
   }
 
-  /* ---- Gallery lightbox (works for any .gallery-grid on the page) ---- */
-  var galleries = document.querySelectorAll(".gallery-grid");
+  /* ---- Gallery lightbox (works for any .gallery-grid or .room-gallery on the page) ---- */
+  var galleries = document.querySelectorAll(".gallery-grid, .room-gallery");
   if (galleries.length) {
     var lightbox = document.createElement("div");
     lightbox.className = "lightbox";
@@ -276,7 +276,7 @@
     }
 
     galleries.forEach(function (grid) {
-      var items = Array.prototype.slice.call(grid.querySelectorAll(".gallery-grid__item"));
+      var items = Array.prototype.slice.call(grid.querySelectorAll(".gallery-grid__item, .room-gallery__item"));
       items.forEach(function (item, i) {
         item.addEventListener("click", function () {
           openLightbox(items, i);
