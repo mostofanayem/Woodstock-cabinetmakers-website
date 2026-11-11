@@ -728,6 +728,9 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
    Inner page headers (services / projects / 404)
    ========================================================================== */
 .page-header { padding-block: clamp(2.75rem, 6vw, 4.5rem) clamp(1.75rem, 3.5vw, 2.75rem); }
+/* Inner-page titles step down from the hero's full display scale — the
+   hero is the one place on the site that should own the biggest type. */
+.page-header h1 { font-size: clamp(2rem, 4.2vw, 3.3rem); max-width: 18em; }
 .breadcrumbs {
   font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--label); margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;
@@ -784,6 +787,13 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 
 @media (max-width: 560px) {
   .service-list__item { padding: 1.5rem; }
+}
+
+.featured-label { font-family: var(--font-label); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--label); text-align: center; margin-bottom: 1.25rem; }
+.featured-project-card { max-width: 680px; margin-inline: auto; }
+.featured-project-card .img-frame { aspect-ratio: 16 / 9; }
+@media (max-width: 560px) {
+  .featured-project-card .img-frame { aspect-ratio: 4 / 5; }
 }
 
 .fitted-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.75rem; }
