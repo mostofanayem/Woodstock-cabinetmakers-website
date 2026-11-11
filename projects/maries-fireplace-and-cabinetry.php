@@ -57,7 +57,6 @@
 <main id="main">
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Marie's Fireplace &amp; Cabinetry</p>
-    <p class="eyebrow">Fireplace &amp; Cabinetry — Toowong</p>
     <h1>A blank wall, and then a fireplace built into art.</h1>
   </div>
 

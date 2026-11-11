@@ -57,7 +57,6 @@
 <main id="main">
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe</p>
-    <p class="eyebrow">Whole Home — Toowong</p>
     <h1>A media wall with more than a TV built into it.</h1>
   </div>
 

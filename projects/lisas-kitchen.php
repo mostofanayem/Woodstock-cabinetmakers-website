@@ -57,7 +57,6 @@
 <main id="main">
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Lisa's Kitchen</p>
-    <p class="eyebrow">Kitchen</p>
     <h1>She called Jack again 26 years later.</h1>
   </div>
 

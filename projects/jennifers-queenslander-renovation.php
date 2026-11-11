@@ -57,7 +57,6 @@
 <main id="main">
   <div class="page-header wrap">
     <p class="breadcrumbs"><a href="../index.html">Home</a><span>/</span><a href="index.html">Our Work</a><span>/</span>Jennifer's Queenslander Renovation</p>
-    <p class="eyebrow">Full Renovation</p>
     <h1>A character Queenslander, renewed room by room.</h1>
   </div>
 
