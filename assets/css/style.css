@@ -210,6 +210,7 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
   font-family: var(--font-label);
   font-size: 0.72rem;
   letter-spacing: 0.06em;
+  transition: background 0.3s var(--ease), border-color 0.3s var(--ease);
 }
 .topbar .wrap {
   display: flex;
@@ -236,7 +237,34 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
   background: rgba(11, 11, 10, 0.86);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
-  transition: transform 0.3s var(--ease);
+  transition: transform 0.3s var(--ease), background 0.3s var(--ease), border-color 0.3s var(--ease), backdrop-filter 0.3s var(--ease);
+}
+
+/* Floating transparent header over the homepage hero (per brand inspiration:
+   dankitchens.com.au / cornishcabinet.com) — scoped to pages that have a
+   .hero section, so every other page's header is untouched. */
+@media (min-width: 861px) {
+  body:has(.hero) .topbar,
+  body:has(.hero) .site-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: transparent;
+    border-bottom-color: transparent;
+  }
+  body:has(.hero) .topbar { top: 0; z-index: 501; }
+  body:has(.hero) .site-nav { top: 40px; backdrop-filter: none; }
+  body:has(.hero).is-scrolled .topbar {
+    background: var(--deep-charcoal);
+    border-bottom-color: var(--hairline);
+  }
+  body:has(.hero).is-scrolled .site-nav {
+    background: rgba(11, 11, 10, 0.86);
+    backdrop-filter: blur(10px);
+    border-bottom-color: var(--hairline);
+  }
+  /* Clear the floating 128px-tall header before the centered hero copy starts */
+  body:has(.hero) .hero__content { padding-top: calc(128px + 2.5rem); }
 }
 .site-nav .wrap {
   display: flex;

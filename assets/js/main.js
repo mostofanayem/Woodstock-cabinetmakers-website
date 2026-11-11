@@ -216,11 +216,13 @@
     document.querySelectorAll(".reveal-init").forEach(function (el) { el.classList.add("reveal-visible"); });
   }
 
-  /* ---- Nav shadow on scroll ---- */
+  /* ---- Nav shadow on scroll (+ solid header once past the hero) ---- */
   var siteNav = document.querySelector(".site-nav");
   if (siteNav) {
     var onScroll = function () {
-      siteNav.classList.toggle("is-scrolled", window.scrollY > 8);
+      var scrolled = window.scrollY > 8;
+      siteNav.classList.toggle("is-scrolled", scrolled);
+      document.body.classList.toggle("is-scrolled", scrolled);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
