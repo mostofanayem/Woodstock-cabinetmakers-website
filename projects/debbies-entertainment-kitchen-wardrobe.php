@@ -11,7 +11,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261111c">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261112">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -48,7 +48,7 @@
       <li><a class="nav-link" href="../index.html#contact">Contact</a></li>
     </ul>
     <div class="site-nav__cta">
-      <a class="btn btn--solid btn--sm" href="../index.html#contact">Get a Quote</a>
+      <a class="btn btn--solid btn--sm" href="../index.html#contact">Get a quote</a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </nav>
@@ -94,7 +94,7 @@
       <h2>Planning more than one room?</h2>
       <p class="lede">Tell us about your space and how your family uses it. Jack will take it from there.</p>
       <div class="cta-band__actions">
-        <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>
+        <a class="btn btn--solid" href="../index.html#contact">Get in touch</a>
         <a class="btn btn--ghost" href="../services/bedroom-and-wardrobes.html">Bedroom &amp; Wardrobes</a>
       </div>
     </div>
@@ -131,7 +131,7 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js?v=20261111c"></script>
+<script src="../assets/js/main.js?v=20261112"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
