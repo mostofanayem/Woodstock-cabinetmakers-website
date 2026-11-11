@@ -33,6 +33,7 @@ $SLOTS = [
     'maries-fireplace-main' => ['maries-fireplace-main.jpg', 'Cover photo (used on cards)', "Marie's Fireplace & Cabinetry"],
     'debbies-project-main' => ['debbies-project-main.jpg', 'Cover photo (used on cards)', "Debbie's Entertainment Wall, Kitchen & Wardrobe"],
     'jennifers-reno-main' => ['jennifers-reno-main.jpg', 'Cover photo (used on cards)', "Jennifer's Queenslander Renovation"],
+    'gayle-and-lances-kitchen-main' => ['gayle-and-lances-kitchen-main.jpg', 'Cover photo (used on cards)', "Gayle & Lance's Kitchen"],
 ];
 
 /* ---- Project galleries: slug => label. Bulk-imported from a Drive folder
@@ -42,6 +43,7 @@ $GALLERIES = [
     'maries-fireplace' => "Marie's Fireplace & Cabinetry",
     'debbies-project' => "Debbie's Entertainment Wall, Kitchen & Wardrobe",
     'jennifers-reno' => "Jennifer's Queenslander Renovation",
+    'gayle-and-lances-kitchen' => "Gayle & Lance's Kitchen",
 ];
 
 $PHOTOS_DIR = __DIR__ . '/../assets/img/photos';
