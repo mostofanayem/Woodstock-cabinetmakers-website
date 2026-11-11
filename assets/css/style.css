@@ -753,6 +753,39 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 .service-nav-grid a strong { font-family: var(--font-display); font-size: 1.1rem; color: var(--ink); font-weight: 400; }
 .service-nav-grid a span { font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); }
 
+/* Services hub — a full-width vertical list of individual cards, not a grid. */
+.service-list { display: flex; flex-direction: column; gap: 1rem; }
+.service-list__item {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  padding: 2rem 2.25rem;
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius);
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.service-list__item:hover {
+  background: rgba(31,122,74,0.08);
+  border-color: var(--woodstock-green);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+}
+.service-list__text { display: flex; flex-direction: column; gap: 0.5rem; }
+.service-list__text strong { font-family: var(--font-display); font-size: clamp(1.4rem, 2.6vw, 1.9rem); font-weight: 700; color: var(--ink); line-height: 1.1; transition: color 0.25s var(--ease); }
+.service-list__item:hover .service-list__text strong { color: var(--woodstock-green); }
+.service-list__text span { font-family: var(--font-label); font-size: 0.74rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--label); }
+.service-list__arrow {
+  flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+  border: 1px solid var(--hairline); color: var(--ink-dim);
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.25s var(--ease), border-color 0.25s var(--ease), color 0.25s var(--ease), transform 0.25s var(--ease);
+}
+.service-list__arrow svg { width: 18px; height: 18px; }
+.service-list__item:hover .service-list__arrow { background: var(--woodstock-green); border-color: var(--woodstock-green); color: var(--cream); transform: translateX(4px); }
+
+@media (max-width: 560px) {
+  .service-list__item { padding: 1.5rem; }
+}
+
 .fitted-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.75rem; }
 .fitted-card { display: block; transition: transform 0.3s var(--ease); }
 .fitted-card:hover { transform: translateY(-5px); }
