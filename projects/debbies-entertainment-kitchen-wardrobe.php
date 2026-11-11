@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Debbie's Entertainment Wall, Kitchen &amp; Wardrobe | Woodstock Cabinet Makers</title>
-<meta name="description" content="A media wall with more than a TV built into it, plus kitchen and wardrobe work across a Toowong home — a Woodstock Cabinet Makers project.">
+<meta name="description" content="A media wall with more than a TV built into it, plus kitchen and wardrobe work across a Toowong home: a Woodstock Cabinet Makers project.">
 <link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/debbies-entertainment-kitchen-wardrobe.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261111b">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261111c">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -70,7 +70,7 @@
       <div class="two-col">
         <div class="img-frame"><img src="../assets/img/photos/debbies-project-main.jpg" alt="Debbie's custom entertainment unit with built-in TV niche and lit shelving, Toowong" width="1600" height="1000"></div>
         <div>
-          <p class="lede">Debbie and her husband Greg found Jack the way a lot of his clients do — through a friend (thanks, Marie). The brief: a smarter way to use a living room that doesn't get much natural light. The result is a custom entertainment unit with a built-in TV niche and open, lit shelving for the pieces Debbie had always wanted to display properly — alongside a kitchen and wardrobe fit-out across the rest of the home.</p>
+          <p class="lede">Debbie and her husband Greg found Jack the way a lot of his clients do: through a friend (thanks, Marie). The brief: a smarter way to use a living room that doesn't get much natural light. The result is a custom entertainment unit with a built-in TV niche and open, lit shelving for the pieces Debbie had always wanted to display properly, alongside a kitchen and wardrobe fit-out across the rest of the home.</p>
           <blockquote class="quote">
             <p>"I found Jack was very approachable, and together we came up with a product that matched what I wanted and my budget. He's a really good communicator, and that helped our whole process."</p>
             <cite>Debbie</cite>
@@ -92,7 +92,7 @@
   <section class="section cta-band">
     <div class="wrap">
       <h2>Planning more than one room?</h2>
-      <p class="lede">Tell us about your space and how your family uses it — Jack will take it from there.</p>
+      <p class="lede">Tell us about your space and how your family uses it. Jack will take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>
         <a class="btn btn--ghost" href="../services/bedroom-and-wardrobes.html">Bedroom &amp; Wardrobes</a>
@@ -106,7 +106,7 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         <a class="logo" href="../index.html"><img class="logo__mark" src="../assets/img/logo-icon.png" alt="" width="34" height="24"><span class="logo__word"><strong>woodstock</strong><span>Cabinet Makers</span></span></a>
-        <p>Brisbane custom cabinetry — practical layouts, done properly, built around how your family actually lives.</p>
+        <p>Brisbane custom cabinetry. Practical layouts, done properly, built around how your family actually lives.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/woodstockcabinetmakers" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg></a>
           <a href="https://www.facebook.com/woodstockcabinetmakers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.5 8.5h2.3V5.7c-.4-.05-1.77-.17-3.37-.17-3.34 0-5.63 2.1-5.63 5.96v2.51H4.4V17.4h3.4V22h3.68v-4.6h3.26l.52-3.4h-3.78v-2.04c0-.98.27-1.46 1.72-1.46z"/></svg></a>
@@ -131,7 +131,7 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js?v=20261111b"></script>
+<script src="../assets/js/main.js?v=20261111c"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

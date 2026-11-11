@@ -4,14 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Jennifer's Queenslander Renovation | Woodstock Cabinet Makers</title>
-<meta name="description" content="A full renovation of a character Queenslander — new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout. A Woodstock Cabinet Makers project.">
+<meta name="description" content="A full renovation of a character Queenslander: new kitchen, laundry, walk-in wardrobe and built-in wardrobes throughout. A Woodstock Cabinet Makers project.">
 <link rel="canonical" href="https://woodstockcabinetmakers.com.au/projects/jennifers-queenslander-renovation.php">
 <link rel="icon" type="image/png" href="../assets/img/favicon-32.png">
 <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Italiana&family=Lora:ital,wght@0,400..700;1,400..700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../assets/css/style.css?v=20261111b">
+<link rel="stylesheet" href="../assets/css/style.css?v=20261111c">
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -70,12 +70,12 @@
       <div class="two-col">
         <div class="img-frame"><img src="../assets/img/photos/jennifers-reno-main.jpg" alt="Jennifer's Queenslander kitchen renovation" width="1600" height="1000"></div>
         <div>
-          <p class="lede">Jennifer, mum of two, owned a once run-down old Queenslander that needed to work harder for her young family. The brief was simple: build it around how they actually live — a new kitchen, a proper laundry, walk-in wardrobe, linen cupboards and built-in wardrobes for every kid's room.</p>
+          <p class="lede">Jennifer, mum of two, owned a once run-down old Queenslander that needed to work harder for her young family. The brief was simple: build it around how they actually live, with a new kitchen, a proper laundry, walk-in wardrobe, linen cupboards and built-in wardrobes for every kid's room.</p>
           <blockquote class="quote">
             <p>"You want someone that has the knowledge and experience of practical layouts, not just off-the-shelf cabinetry. You want something that's going to last for years to come."</p>
             <cite>Jennifer</cite>
           </blockquote>
-          <p style="margin-top:1.5rem;">Jennifer was referred to Woodstock by her builders, Peter and Stuart Davis — the kind of trade-to-trade recommendation that comes from work holding up on previous jobs.</p>
+          <p style="margin-top:1.5rem;">Jennifer was referred to Woodstock by her builders, Peter and Stuart Davis, the kind of trade-to-trade recommendation that comes from work holding up on previous jobs.</p>
         </div>
       </div>
       <?php
@@ -92,7 +92,7 @@
   <section class="section cta-band">
     <div class="wrap">
       <h2>Renovating an older home?</h2>
-      <p class="lede">Tell us about your space and how your family uses it — Jack will take it from there.</p>
+      <p class="lede">Tell us about your space and how your family uses it. Jack will take it from there.</p>
       <div class="cta-band__actions">
         <a class="btn btn--solid" href="../index.html#contact">Get In Touch</a>
         <a class="btn btn--ghost" href="../services/kitchen-and-living-room.html">Kitchen &amp; Living Room</a>
@@ -106,7 +106,7 @@
     <div class="footer-grid">
       <div class="footer-col footer-brand">
         <a class="logo" href="../index.html"><img class="logo__mark" src="../assets/img/logo-icon.png" alt="" width="34" height="24"><span class="logo__word"><strong>woodstock</strong><span>Cabinet Makers</span></span></a>
-        <p>Brisbane custom cabinetry — practical layouts, done properly, built around how your family actually lives.</p>
+        <p>Brisbane custom cabinetry. Practical layouts, done properly, built around how your family actually lives.</p>
         <div class="footer-socials">
           <a href="https://www.instagram.com/woodstockcabinetmakers" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1"/></svg></a>
           <a href="https://www.facebook.com/woodstockcabinetmakers" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14.5 8.5h2.3V5.7c-.4-.05-1.77-.17-3.37-.17-3.34 0-5.63 2.1-5.63 5.96v2.51H4.4V17.4h3.4V22h3.68v-4.6h3.26l.52-3.4h-3.78v-2.04c0-.98.27-1.46 1.72-1.46z"/></svg></a>
@@ -131,7 +131,7 @@
   </div>
 </footer>
 
-<script src="../assets/js/main.js?v=20261111b"></script>
+<script src="../assets/js/main.js?v=20261111c"></script>
 <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>

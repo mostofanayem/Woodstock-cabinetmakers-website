@@ -71,7 +71,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .skip-link:focus { top: 1rem; }
 
 /* ---- Typography ---- */
-h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; color: var(--cream); line-height: 1.1; letter-spacing: 0.01em; }
+h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 700; color: var(--cream); line-height: 1.1; letter-spacing: 0.01em; }
 h1 { font-size: clamp(2.6rem, 6vw, 5rem); }
 h2 { font-size: clamp(2rem, 4.2vw, 3.2rem); }
 h3 { font-size: clamp(1.4rem, 2.4vw, 1.9rem); }
@@ -391,15 +391,18 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 .hero__media { position: absolute; inset: 0; z-index: 0; }
 .hero__media img {
   width: 100%; height: 100%; object-fit: cover;
+  filter: saturate(1.1) contrast(1.04) brightness(1.02);
   animation: heroZoom 22s var(--ease) infinite alternate;
 }
 @keyframes heroZoom {
   from { transform: scale(1); }
   to { transform: scale(1.08); }
 }
+/* Kept deliberately light — the real project photo should read as vibrant,
+   not moody. Just enough to keep text legible, heaviest near the CTAs. */
 .hero__scrim {
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(11,11,10,0.5) 0%, rgba(11,11,10,0.58) 45%, rgba(11,11,10,0.92) 100%);
+  background: linear-gradient(180deg, rgba(11,11,10,0.2) 0%, rgba(11,11,10,0.28) 45%, rgba(11,11,10,0.62) 100%);
 }
 .hero__content {
   position: relative;
@@ -410,8 +413,8 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
   text-align: center;
   padding-block: clamp(3rem, 8vw, 5rem);
 }
-.hero h1 { max-width: 16em; margin-inline: auto; margin-bottom: 1.5rem; }
-.hero__content .lede { font-size: 1.2rem; margin-inline: auto; margin-bottom: 2.2rem; }
+.hero h1 { max-width: 16em; margin-inline: auto; margin-bottom: 1.5rem; text-shadow: 0 4px 30px rgba(0,0,0,0.6), 0 2px 10px rgba(0,0,0,0.5); }
+.hero__content .lede { font-size: 1.2rem; margin-inline: auto; margin-bottom: 2.2rem; text-shadow: 0 2px 16px rgba(0,0,0,0.65); }
 .hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; }
 
 .hero__scroll-cue {
