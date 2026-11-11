@@ -103,10 +103,10 @@ blockquote.quote cite {
 
 /* ---- Layout helpers ---- */
 .wrap { max-width: var(--max-width); margin-inline: auto; padding-inline: var(--gutter); }
-.section { padding-block: clamp(3.5rem, 9vw, 7.5rem); }
-.section--tight { padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+.section { padding-block: clamp(2.5rem, 6vw, 5rem); }
+.section--tight { padding-block: clamp(1.75rem, 4vw, 3rem); }
 .section--dark { background: var(--cream-deep); }
-.section-head { max-width: 42em; margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.section-head { max-width: 42em; margin-bottom: clamp(1.5rem, 3.5vw, 2.5rem); }
 .section-head p { margin-top: 1rem; }
 .section-head h2 { position: relative; padding-bottom: 1.1rem; }
 .section-head h2::after {
@@ -727,7 +727,7 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 /* ==========================================================================
    Inner page headers (services / projects / 404)
    ========================================================================== */
-.page-header { padding-block: clamp(4rem, 10vw, 7rem) clamp(2.5rem, 5vw, 4rem); }
+.page-header { padding-block: clamp(2.75rem, 6vw, 4.5rem) clamp(1.75rem, 3.5vw, 2.75rem); }
 .breadcrumbs {
   font-family: var(--font-label); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
   color: var(--label); margin-bottom: 1.5rem; display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap;
