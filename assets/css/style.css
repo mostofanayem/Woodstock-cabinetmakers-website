@@ -207,10 +207,16 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 .topbar a[href^="tel:"]:hover { color: var(--sage); }
 .rating-strip { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--cream-dim); }
 .rating-strip .stars { color: var(--sage); letter-spacing: 0.05em; }
-.topbar__socials { display: flex; align-items: center; gap: 0.9rem; }
-.topbar__socials a { color: var(--cream-dim); display: inline-flex; }
-.topbar__socials a:hover { color: var(--sage); }
-.topbar__socials svg { width: 15px; height: 15px; }
+.topbar__socials { display: flex; align-items: center; gap: 0.6rem; }
+.topbar__socials a {
+  width: 28px; height: 28px; border-radius: 50%;
+  border: 1px solid var(--hairline);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--cream-dim);
+  transition: border-color 0.2s var(--ease), color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.topbar__socials a:hover { border-color: var(--sage); color: var(--sage); transform: translateY(-2px) scale(1.06); }
+.topbar__socials svg { width: 13px; height: 13px; }
 
 .site-nav {
   position: sticky;
@@ -224,18 +230,25 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 
 /* Floating transparent header over the homepage hero (per brand inspiration:
    dankitchens.com.au / cornishcabinet.com) — scoped to pages that have a
-   .hero section, so every other page's header is untouched. */
+   .hero section, so every other page's header is untouched. A dedicated
+   gradient (independent of the hero's own scrim) keeps the topbar/nav text
+   legible over any hero photo, bright or dark. */
 @media (min-width: 861px) {
   body:has(.hero) .topbar,
   body:has(.hero) .site-nav {
     position: fixed;
     left: 0;
     right: 0;
-    background: transparent;
     border-bottom-color: transparent;
   }
-  body:has(.hero) .topbar { top: 0; z-index: 501; }
-  body:has(.hero) .site-nav { top: 40px; backdrop-filter: none; }
+  body:has(.hero) .topbar {
+    top: 0; z-index: 501;
+    background: linear-gradient(180deg, rgba(11,11,10,0.6) 0%, rgba(11,11,10,0.4) 100%);
+  }
+  body:has(.hero) .site-nav {
+    top: 40px; backdrop-filter: none;
+    background: linear-gradient(180deg, rgba(11,11,10,0.4) 0%, rgba(11,11,10,0.1) 100%);
+  }
   body:has(.hero).is-scrolled .topbar {
     background: var(--deep-charcoal);
     border-bottom-color: var(--hairline);
@@ -258,11 +271,10 @@ a:hover > .img-frame::after, .project-card:hover .img-frame::after { opacity: 1;
 .site-nav__links > li { position: relative; }
 .site-nav__links a.nav-link {
   position: relative;
-  font-family: var(--font-label);
-  font-size: 0.74rem;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  font-weight: 500;
+  letter-spacing: 0.01em;
   color: var(--cream-dim);
   padding: 0.5rem 0;
   display: inline-flex;
