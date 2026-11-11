@@ -36,7 +36,20 @@ A static HTML/CSS/JS + PHP website for **woodstockcabinetmakers.com.au**, built 
 
 ## More real projects exist (not in this build's scope yet)
 
-Mostofa's Drive folder shows finished photo sets for at least two more real projects beyond the 4 in this build: a **Lance & Gayle kitchen** and a **"Holland" project**, plus an unlabeled "1st project" folder that couldn't be confidently attributed to a named client without guessing. If Jack wants these added to the portfolio, confirm the client names/details and treat them the same way as the existing 4 (new project page + card in `/projects/` + homepage band + relevant service page).
+Mostofa's Drive folder shows finished photo sets for at least two more real projects beyond the 4 in this build: a **Lance & Gayle kitchen** (added 11 Nov 2026 — see below) and a **"Holland" project**, plus an unlabeled "1st project" folder that couldn't be confidently attributed to a named client without guessing. If Jack wants more added to the portfolio, confirm the client names/details and follow the checklist below.
+
+## Adding a brand-new project (checklist)
+
+Whenever a new project is added (not just more photos for an existing one), **all** of these need updating — don't stop after creating the project page:
+
+1. `projects/{slug}.php` — new project detail page (copy the pattern of an existing one: `page-header`, `project-meta`, two-col intro + `render_project_gallery('{slug}', [])`, cta-band). Get client name/story facts from Mostofa/Jack — never invent them; a vague placeholder ("years ago", no quote) is fine if that's all that's confirmed.
+2. `admin/index.php` — add the slug to both `$SLOTS` (cover photo) and `$GALLERIES` (bulk Drive-folder import) so Jack/Mostofa can upload through `/admin`.
+3. `assets/img/photos/{slug}-main.jpg` — copy the existing shared placeholder image (same file used by all other projects' covers, e.g. `lisas-kitchen-main.jpg`) under the new filename, so the card looks right before a real cover photo is uploaded.
+4. Project card added in **three** listing spots: the homepage `.project-track` carousel (`index.html`), the Services hub carousel (`services/index.html`), and the "Our Work" grid (`projects/index.html`).
+5. `sitemap.xml` — add the new project page URL.
+6. **After the real photos are actually imported via `/admin`**: review them and add the ones matching a service category to that service page's curated `.room-gallery` (e.g. `services/kitchen-and-living-room.html`) with accurate per-photo captions — the same way the original 4 projects' photos were curated. Don't skip this step; it's easy to forget since it happens after the upload, not at project-creation time.
+
+Gayle & Lance's Kitchen (added 11 Nov 2026) is the reference example for all of the above.
 
 ## Hard rules carried over from the original brief (still apply)
 
